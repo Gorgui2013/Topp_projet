@@ -49,7 +49,7 @@ security:
             logout:
                 path: app_logout
                 # where to redirect after logout
-                # target: app_login
+                target: app_login
 
             # use a custom rate limiter via its service ID
             login_throttling:

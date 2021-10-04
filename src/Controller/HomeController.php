@@ -26,14 +26,14 @@ class HomeController extends AbstractController
         $projet = new Projet();
         $projetForm = $this->createForm(ProjetType::class, $projet);
         $projetForm->handleRequest($request);
+        /** @var \App\Entity\User $user */
+        $user = $this->getUser();
 
         if($request->isMethod('POST')) {
 
             $manager = $this->getDoctrine()->getManager();
             if ($projetForm->isSubmitted() && $projetForm->isValid()) {
 
-                /** @var \App\Entity\User $user */
-                $user = $this->getUser();
                 $projet->setUser($user);
 
                 // dd($projet);
@@ -47,7 +47,7 @@ class HomeController extends AbstractController
             }
 
         }
-        $projets = $q->findAll();
+        $projets = $q->findBy(['user' => $user->getId()]);
         return $this->render('home/index.html.twig', [
             'projets' => $projets,
             'projetForm' => $projetForm->createView(),
@@ -105,6 +105,7 @@ class HomeController extends AbstractController
         $manager = $this->getDoctrine()->getManager();
         if ($taskForm->isSubmitted() && $taskForm->isValid()) {
 
+            $task->setStep($qs->find($request->request->get('step')));
             $manager->persist($task);
             $manager->flush();
 
@@ -112,6 +113,116 @@ class HomeController extends AbstractController
             $this->addFlash('success', 'Modification faite avec succé !');
             return $this->redirect($request->headers->get('referer'));
         }
+        return $this->redirect($request->headers->get('referer'));
+    }
+
+    /**
+     * @Route("/home/projet/{id}/edit", name="edit_projet")
+     */
+    public function editprojet($id, ProjetRepository $q, Request $request): Response
+    {
+        $projet = $q->find($id);
+
+        // dd(new \Datetime($request->request->get('begin')));
+        $manager = $this->getDoctrine()->getManager();
+
+        $projet->setName($request->request->get('name'));
+        $projet->setDescription($request->request->get('description'));
+        $projet->setBegin(new \Datetime($request->request->get('begin')));
+        $projet->setEnd(new \Datetime($request->request->get('end')));
+        $projet->setUpdatedAt(new \DateTime());
+
+        $manager->persist($projet);
+        $manager->flush();
+
+        $this->addFlash('success', 'Modification faite avec succé !');
+        return $this->redirect($request->headers->get('referer'));
+
+    }
+
+    /**
+     * @Route("/home/step/{id}/edit", name="edit_step")
+     */
+    public function editstep($id, StepRepository $q, Request $request): Response
+    {
+        $step = $q->find($id);
+
+        // dd(new \Datetime($request->request->get('begin')));
+        $manager = $this->getDoctrine()->getManager();
+
+        $step->setName($request->request->get('name'));
+        $step->setDescription($request->request->get('description'));
+        $step->setUpdatedAt(new \DateTime());
+
+        $manager->persist($step);
+        $manager->flush();
+
+        $this->addFlash('success', 'Modification faite avec succé !');
+        return $this->redirect($request->headers->get('referer'));
+
+    }
+
+    // /**
+    //  * @Route("/home/task/{id}/edit", name="edit_task")
+    //  */
+    // public function edittask($id, TaskRepository $q, Request $request): Response
+    // {
+    //     $task = $q->find($id);
+
+    //     // dd(new \Datetime($request->request->get('begin')));
+    //     $manager = $this->getDoctrine()->getManager();
+
+    //     $task->setName($request->request->get('name'));
+    //     $task->setDescription($request->request->get('description'));
+    //     $task->setUpdatedAt(new \DateTime());
+
+    //     $manager->persist($task);
+    //     $manager->flush();
+
+    //     $this->addFlash('success', 'Modification faite avec succé !');
+    //     return $this->redirect($request->headers->get('referer'));
+
+    // }
+
+    /**
+     * @Route("/home/{id}/delete projet", name="delete_projet")
+     */
+    public function deleteProjet($id, ProjetRepository $q, Request $request): Response
+    {
+        $projet = $q->find($id);
+        $manager = $this->getDoctrine()->getManager();
+        $manager->remove($projet);
+        $manager->flush();
+
+        $this->addFlash('success', 'Suppression faite avec succé !');
+        return $this->redirect($request->headers->get('referer'));
+    }
+
+    /**
+     * @Route("/home/{id}/delete step", name="delete_step")
+     */
+    public function deleteStep($id, StepRepository $q, Request $request): Response
+    {
+        $step = $q->find($id);
+        $manager = $this->getDoctrine()->getManager();
+        $manager->remove($step);
+        $manager->flush();
+
+        $this->addFlash('success', 'Suppression faite avec succé !');
+        return $this->redirect($request->headers->get('referer'));
+    }
+
+    /**
+     * @Route("/home/{id}/delete task", name="delete_task")
+     */
+    public function deleteTask($id, TaskRepository $q, Request $request): Response
+    {
+        $task = $q->find($id);
+        $manager = $this->getDoctrine()->getManager();
+        $manager->remove($task);
+        $manager->flush();
+
+        $this->addFlash('success', 'Suppression faite avec succé !');
         return $this->redirect($request->headers->get('referer'));
     }
 }

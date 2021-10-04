@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Task;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,6 +14,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use App\Entity\Step;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 
 class TaskType extends AbstractType
 {
@@ -23,11 +26,10 @@ class TaskType extends AbstractType
         ->add('description', TextareaType::class, ['required' => true])
         ->add('begin', DateType::class, ['required' => true,'html5' => true, 'widget' => 'single_text'])
         ->add('end', DateType::class, ['required' => true,'html5' => true, 'widget' => 'single_text'])
-        ->add('step', EntityType::class, [
-            'class' => Step::class,
-            'choice_label' => 'name',
-            // 'expanded' => true,
-        ])
+        // ->add('step', EntityType::class, [
+        //     'class' => Step::class,
+        //     'choice_label' => 'name'
+        // ])
         ->add('submit', SubmitType::class, ['label' => 'Enregirter'])
         ;
     }

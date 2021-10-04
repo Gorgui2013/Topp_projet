@@ -2,15 +2,23 @@
 {% for step in projet.steps %}
     <div class="col-sm-3 mb-3">
         <div class="shadow-sm">
-            <div class="card card-body bg-light">
-                <h5>{{step.name}}</h5>
-                <p class="mb-0 mt-0">{{step.description}}</p>
+            <div class="card card-body bg-light position-relative" data-bs-toggle="tooltip" data-bs-placement="top" title="{{step.description}}">
+                <div class="row">
+                    <div class="col-sm-6"><strong>{{step.name}}</strong></div>
+                    <div class="col-sm-6" align="right">
+                        <a href="{{path('delete_step', {'id': step.id})}}" onclick="return confirm('Voulez-vous vraiment supprimer?')"><i class="fas fa-trash" style="color:red"></i></a>
+                    </div>
+                </div>
+                <a class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary" href="#editstep{{step.id}}" data-bs-toggle="modal"><i class="fas fa-edit"></i></a>
             </div>
             <div class="row">
                 {% include 'home/tasks.html.twig' %}
             </div>
         </div>
     </div>
+    {% include 'home/editstep.html.twig' %}
+{% else %}
+    <p>Aucune étape n'est définie pour ce projet.</p>
 {% endfor %}
 
 {% include 'home/newtask.html.twig' %}

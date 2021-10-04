@@ -50,7 +50,7 @@ class Projet
     private $updatedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity=Step::class, mappedBy="projet")
+     * @ORM\OneToMany(targetEntity=Step::class, mappedBy="projet", cascade={"persist", "remove"})
      */
     private $steps;
 

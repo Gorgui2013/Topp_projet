@@ -15,6 +15,27 @@
         {% endblock %}
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+        <style>
+        .scroller
+        {
+          overflow-x: auto;
+        }
+        .scroller.task
+        {
+          height: 80vh;
+          padding-top: 20px;
+          padding-bottom: 5px;
+        }
+        .projet{
+          color: #1111f0;
+          text-decoration:none
+        }
+        .projet:hover{
+          color: #111;
+          text-decoration:none
+        }
+        </style>
       </head>
       <body>
         {% if app.user %}
@@ -54,24 +75,8 @@
       </nav>
     {% endif %}
 
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-7 my-auto">
-          <div class="col-lg-10 mx-auto">
-            <h1>Topp Projet</h1>
-            <h4>VOTRE OUTIL DE GESTION DE PROJET INDIVIDUEL</h4>
-          </div>
-        </div>
-        <div class="col-sm-5" style="background-image:url({{asset('img/bg2.jpg')}}); height: 100vh; background-size: cover">
-          <div class="col-lg-8 mx-auto">
-            <div class="card card-body" style="margin-top: 40%">
-              <h4>Connexion</h4>
-              {% block body %}{% endblock %}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
+    {% block body %}{% endblock %}
     </body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/js/all.min.js" integrity="sha512-cyAbuGborsD25bhT/uz++wPqrh5cqPh1ULJz4NSpN9ktWcA6Hnh9g+CWKeNx2R0fgQt+ybRXdabSBgYXkQTTmA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

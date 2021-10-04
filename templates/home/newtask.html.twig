@@ -25,9 +25,11 @@
         <label id="souscription" class="color-two">Date Fin<span style="color: red; margin-left: 5px;">*</span></label>
         {{ form_widget(taskForm.end, {'attr': {'class':'form-control mb-3 ', 'placeholder': 'Date fin'}}) }}
 
-        {{ form_errors(taskForm.step, {'attr': {'class':'text-danger'}}) }}
-        <label id="souscription" class="color-two">Date Fin<span style="color: red; margin-left: 5px;">*</span></label>
-        {{ form_widget(taskForm.step, {'attr': {'class':'form-control mb-3 ', 'placeholder': 'Date fin'}}) }}
+        <select name="step" class="form-control form-select" id="">
+          {% for step in projet.steps %}
+            <option value="{{step.id}}">{{step.name}}</option>
+          {% endfor %}
+        </select>
 
         <div class="row mt-4" align="right">{{ form_row(taskForm.submit, {'attr': {'class': 'btn btn-sm btn-outline-secondary'}}, { 'label': 'Enregirter' }) }}</div>
       </div>

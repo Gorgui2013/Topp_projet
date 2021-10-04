@@ -1,26 +1,24 @@
-{# {% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block body %}
+    <form action="{{path('app_login')}}"  method="post">
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
 
-    {% block body %} #}
-        <form action="{{path('app_login')}}"  method="post">
-            {# {% if error %}
-                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-            {% endif %} #}
+        {% if app.user %}
+            <div class="mb-3">
+                You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+            </div>
+        {% endif %}
+        <label for="inputUsername">Username</label>
+        <input type="text" value="" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
+        <label for="inputPassword">Password</label>
+        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
-            {% if app.user %}
-                <div class="mb-3">
-                    You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-                </div>
-            {% endif %}
-            <label for="inputUsername">Username</label>
-            <input type="text" value="" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
-            <label for="inputPassword">Password</label>
-            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-
-            <input type="hidden" name="_csrf_token"
-            value="{{ csrf_token('authenticate') }}"
-            >
+        <input type="hidden" name="_csrf_token"
+        value="{{ csrf_token('authenticate') }}"
+        >
 
     {#
         Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
@@ -33,9 +31,9 @@
         </div>
         #}
         <div align="center">
-        <button class="btn btn-sm btn-outline-secondary mt-3" type="submit">
-           <i class="fas fa-sign-in-alt"></i> Connexion
-        </button>
-    </div>
-    </form>
-    {# {% endblock %} #}
+            <button class="btn btn-sm btn-outline-secondary mt-3" type="submit">
+               <i class="fas fa-sign-in-alt"></i> Connexion
+           </button>
+       </div>
+   </form>
+{% endblock %}

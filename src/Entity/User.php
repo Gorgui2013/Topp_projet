@@ -38,7 +38,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $password;
 
     /**
-     * @ORM\OneToMany(targetEntity=Projet::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Projet::class, mappedBy="user", cascade={"persist", "remove"})
      */
     private $projets;
 

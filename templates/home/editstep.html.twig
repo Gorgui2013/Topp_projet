@@ -1,0 +1,20 @@
+<!-- Modal -->
+<div class="modal fade" id="editstep{{step.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nouveau projet</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="{{path('edit_step', {'id': step.id})}}" method="POST">
+          <input type="text" class="form-control mb-4" name="name" value="{{step.name}}">
+          <textarea name="description" class="form-control mb-4" rows="3">{{step.description}}</textarea>
+          <div align="right">
+            <button type="submit" class="btn btn-sm btn-outline-secondary">Enregistrer</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

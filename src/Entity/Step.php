@@ -45,7 +45,7 @@ class Step
     private $projet;
 
     /**
-     * @ORM\OneToMany(targetEntity=Task::class, mappedBy="step")
+     * @ORM\OneToMany(targetEntity=Task::class, mappedBy="step", cascade={"persist", "remove"})
      */
     private $tasks;
 
