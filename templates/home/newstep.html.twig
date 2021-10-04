@@ -1,0 +1,25 @@
+<!-- Modal -->
+<div class="modal fade" id="newstep" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nouveau projet</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{ form_start(stepForm) }}
+
+        {{ form_errors(stepForm.name, {'attr': {'class':'text-danger'}}) }}
+        <label id="souscription" class="color-two">Nom<span style="color: red; margin-left: 5px;">*</span></label>
+        {{ form_widget(stepForm.name, {'attr': {'class':'form-control mb-3 ', 'placeholder': 'Nom du projet'}}) }}
+
+        {{ form_errors(stepForm.description, {'attr': {'class':'text-danger'}}) }}
+        <label id="souscription" class="color-two">Description<span style="color: red; margin-left: 5px;">*</span></label>
+        {{ form_widget(stepForm.description, {'attr': {'class':'form-control mb-3 ', 'placeholder': 'Description du projet'}}) }}
+
+        <div class="row mt-4" align="right">{{ form_row(stepForm.submit, {'attr': {'class': 'btn btn-sm btn-outline-secondary'}}, { 'label': 'Enregirter' }) }}</div>
+      </div>
+    </div>
+    {{ form_end(stepForm) }}
+  </div>
+</div>

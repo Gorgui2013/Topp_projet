@@ -1,0 +1,37 @@
+<!-- Modal -->
+<div class="modal fade" id="newtask" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nouveau projet</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{ form_start(taskForm, {'action': path('task'), 'method': 'POST'})}}
+
+        {{ form_errors(taskForm.name, {'attr': {'class':'text-danger'}}) }}
+        <label id="souscription" class="color-two">Nom<span style="color: red; margin-left: 5px;">*</span></label>
+        {{ form_widget(taskForm.name, {'attr': {'class':'form-control mb-3 ', 'placeholder': 'Nom du projet'}}) }}
+
+        {{ form_errors(taskForm.description, {'attr': {'class':'text-danger'}}) }}
+        <label id="souscription" class="color-two">Description<span style="color: red; margin-left: 5px;">*</span></label>
+        {{ form_widget(taskForm.description, {'attr': {'class':'form-control mb-3 ', 'placeholder': 'Description du projet'}}) }}
+
+        {{ form_errors(taskForm.begin, {'attr': {'class':'text-danger'}}) }}
+        <label id="souscription" class="color-two">Date début<span style="color: red; margin-left: 5px;">*</span></label>
+        {{ form_widget(taskForm.begin, {'attr': {'class':'form-control mb-3 ', 'placeholder': 'Date début'}}) }}
+
+        {{ form_errors(taskForm.end, {'attr': {'class':'text-danger'}}) }}
+        <label id="souscription" class="color-two">Date Fin<span style="color: red; margin-left: 5px;">*</span></label>
+        {{ form_widget(taskForm.end, {'attr': {'class':'form-control mb-3 ', 'placeholder': 'Date fin'}}) }}
+
+        {{ form_errors(taskForm.step, {'attr': {'class':'text-danger'}}) }}
+        <label id="souscription" class="color-two">Date Fin<span style="color: red; margin-left: 5px;">*</span></label>
+        {{ form_widget(taskForm.step, {'attr': {'class':'form-control mb-3 ', 'placeholder': 'Date fin'}}) }}
+
+        <div class="row mt-4" align="right">{{ form_row(taskForm.submit, {'attr': {'class': 'btn btn-sm btn-outline-secondary'}}, { 'label': 'Enregirter' }) }}</div>
+      </div>
+    </div>
+    {{ form_end(taskForm) }}
+  </div>
+</div>

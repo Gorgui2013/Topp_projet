@@ -1,0 +1,15 @@
+
+{% for projet in projets %}
+    <div class="col-sm-3 mb-3">
+        <a href="{{path('single_projet', {'id': projet.id})}}" style="color: #111; text-decoration:none">
+            <div class="card card-body bg-light shadow-sm">
+                <h4>{{projet.name}}</h4>
+                <p class="mb-0 mt-0"><strong>3</strong> taches</p>
+                <div class="row">
+                    <div class="col-sm-6">{{projet.begin | date('d M y')}}</div>
+                    <div class="col-sm-6">{{projet.end | date('d M y')}}</div>
+                </div>
+            </div>
+        </a>
+    </div>
+{% endfor %}

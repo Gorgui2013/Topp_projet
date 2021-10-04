@@ -1,0 +1,16 @@
+
+{% for step in projet.steps %}
+    <div class="col-sm-3 mb-3">
+        <div class="shadow-sm">
+            <div class="card card-body bg-light">
+                <h5>{{step.name}}</h5>
+                <p class="mb-0 mt-0">{{step.description}}</p>
+            </div>
+            <div class="row">
+                {% include 'home/tasks.html.twig' %}
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+{% include 'home/newtask.html.twig' %}

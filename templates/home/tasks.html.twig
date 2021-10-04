@@ -1,0 +1,13 @@
+<ul class="list-group list-group-flush mt-0">
+    {% for task in step.tasks %}
+        {# <a href="{{path('single_projet', {'id': projet.id})}}" style="color: #111; text-decoration:none"> #}
+        <li class="list-group-item">
+            <p class="mb-0 mt-0">{{task.name}}</p>
+            <div class="row">
+                <div class="col-sm-6">{{task.begin | date('d M y')}}</div>
+                <div class="col-sm-6">{{task.end | date('d M y')}}</div>
+            </div>
+        </li>
+        {# </a> #}
+    {% endfor %}
+</ul>

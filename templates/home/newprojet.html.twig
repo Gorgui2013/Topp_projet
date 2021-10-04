@@ -1,0 +1,33 @@
+<!-- Modal -->
+<div class="modal fade" id="newprojet" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nouveau projet</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{ form_start(projetForm) }}
+
+        {{ form_errors(projetForm.name, {'attr': {'class':'text-danger'}}) }}
+        <label id="souscription" class="color-two">Nom<span style="color: red; margin-left: 5px;">*</span></label>
+        {{ form_widget(projetForm.name, {'attr': {'class':'form-control mb-3 ', 'placeholder': 'Nom du projet'}}) }}
+
+        {{ form_errors(projetForm.description, {'attr': {'class':'text-danger'}}) }}
+        <label id="souscription" class="color-two">Description<span style="color: red; margin-left: 5px;">*</span></label>
+        {{ form_widget(projetForm.description, {'attr': {'class':'form-control mb-3 ', 'placeholder': 'Description du projet'}}) }}
+
+        {{ form_errors(projetForm.begin, {'attr': {'class':'text-danger'}}) }}
+        <label id="souscription" class="color-two">Date début<span style="color: red; margin-left: 5px;">*</span></label>
+        {{ form_widget(projetForm.begin, {'attr': {'class':'form-control mb-3 ', 'placeholder': 'Date début'}}) }}
+
+        {{ form_errors(projetForm.end, {'attr': {'class':'text-danger'}}) }}
+        <label id="souscription" class="color-two">Date Fin<span style="color: red; margin-left: 5px;">*</span></label>
+        {{ form_widget(projetForm.end, {'attr': {'class':'form-control mb-3 ', 'placeholder': 'Date fin'}}) }}
+
+        <div class="row mt-4" align="right">{{ form_row(projetForm.submit, {'attr': {'class': 'btn btn-sm btn-outline-secondary'}}, { 'label': 'Enregirter' }) }}</div>
+      </div>
+    </div>
+    {{ form_end(projetForm) }}
+  </div>
+</div>
